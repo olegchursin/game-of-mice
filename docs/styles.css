@@ -1,0 +1,2047 @@
+:root {
+  /* Cold-Press Watercolor Paper & Sepia Ink Palette */
+  --paper-cream: #fbf5e8;
+  --paper-parchment: #f3e6ce;
+  --paper-aged: #e5d1b0;
+  --paper-deep: #d4b88e;
+
+  --ink-sepia: #2e1d10;
+  --ink-brown: #4d331e;
+  --ink-muted: #75583f;
+  --ink-faint: #9e8267;
+
+  /* Watercolor Pigments */
+  --wc-rose: #c85a6e;
+  --wc-rose-soft: #f4dce1;
+  --wc-crimson: #9e2a2b;
+  --wc-sage: #4c7c59;
+  --wc-sage-soft: #dfece2;
+  --wc-teal: #3b6e82;
+  --wc-teal-soft: #dcebf0;
+  --wc-ochre: #c98a2c;
+  --wc-ochre-soft: #fbf0d4;
+  --wc-plum: #6d4c7d;
+
+  /* Timber & Manor Frames */
+  --timber-beam: #784e28;
+  --timber-dark: #4a2c11;
+  --timber-light: #cfa572;
+  --manor-white-frame: #dfd6c7;
+
+  /* Fonts */
+  --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', 'Lora', Georgia, serif;
+  --font-body: 'Lora', 'Cormorant Garamond', Georgia, serif;
+  --font-hand: 'Caveat', 'Cormorant Garamond', cursive;
+
+  --shadow-soft: 0 10px 30px rgba(58, 36, 16, 0.13);
+  --shadow-book: 0 22px 58px rgba(38, 22, 9, 0.32);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink-sepia);
+  background-color: #efe1c8;
+  background-image:
+    radial-gradient(ellipse at 18% 12%, rgba(255, 248, 231, 0.85) 0%, transparent 55%),
+    radial-gradient(ellipse at 82% 20%, rgba(244, 216, 206, 0.45) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 88%, rgba(212, 228, 205, 0.45) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, rgba(120, 82, 45, 0.02) 0px, rgba(120, 82, 45, 0.02) 1px, transparent 1px, transparent 4px),
+    linear-gradient(180deg, #f8efe0 0%, #eedbc0 48%, #e4cca8 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.6s ease, color 0.4s ease;
+  position: relative;
+}
+
+/* Candlelit Evening Ambiance Mode */
+body.ambiance-night {
+  background-color: #1c1917;
+  background-image:
+    radial-gradient(circle at 25% 35%, rgba(255, 196, 89, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 75% 35%, rgba(255, 185, 75, 0.16) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 0%, #2a2433 0%, #1d1822 55%, #141116 100%);
+  color: #f7ebd4;
+}
+
+body.ambiance-night .storybook-header,
+body.ambiance-night .companions-folio,
+body.ambiance-night .navigation-ribbon-bar,
+body.ambiance-night .manor-pediment,
+body.ambiance-night .wunderkammer-section,
+body.ambiance-night .village-banner-card,
+body.ambiance-night .village-cottage-card {
+  background: linear-gradient(145deg, #2e241d 0%, #231b15 100%);
+  border-color: #7d5b38;
+  color: #f7ebd4;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.55), 0 0 24px rgba(255, 190, 82, 0.12);
+}
+
+body.ambiance-night .storybook-title,
+body.ambiance-night .folio-heading,
+body.ambiance-night .manor-name,
+body.ambiance-night .village-title {
+  color: #ffdf9a;
+}
+
+body.ambiance-night .storybook-subtitle,
+body.ambiance-night .folio-subtext,
+body.ambiance-night .manor-desc,
+body.ambiance-night .village-lead {
+  color: #d9c3a3;
+}
+
+body.ambiance-night .room-card {
+  box-shadow: 0 0 26px rgba(255, 196, 92, 0.28), inset 0 0 22px rgba(255, 182, 66, 0.22);
+}
+
+body.ambiance-night .hanging-eave-lantern {
+  filter: drop-shadow(0 0 12px #ffbe42) drop-shadow(0 0 22px #ff9800);
+  transform: scale(1.12);
+}
+
+/* Floating Watercolor Petals, Pollen & Fireflies Layer */
+.sky-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.atmo-particle {
+  position: absolute;
+  pointer-events: none;
+  animation: floatMote linear infinite;
+}
+
+.atmo-petal {
+  width: 11px;
+  height: 8px;
+  background: radial-gradient(circle at 30% 30%, #ffd6e0, #e08297);
+  border-radius: 70% 30% 70% 30%;
+  opacity: 0.65;
+  box-shadow: 0 1px 3px rgba(140, 60, 80, 0.2);
+}
+
+.atmo-firefly {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffbe0 0%, #ffd04d 55%, rgba(255, 165, 0, 0) 100%);
+  box-shadow: 0 0 10px 3px rgba(255, 210, 77, 0.85);
+}
+
+@keyframes floatMote {
+  0% {
+    transform: translateY(-20px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(102vh) translateX(65px) rotate(260deg);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   STORYBOOK HEADER & POSTAL STAMP HUD
+   ========================================================================== */
+.storybook-header {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  margin: 18px auto 14px;
+  padding: 20px 28px 18px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 252, 245, 0.95), rgba(244, 231, 207, 0.94)),
+    var(--paper-cream);
+  border: 2px solid #8c6642;
+  outline: 1px solid rgba(92, 58, 29, 0.35);
+  outline-offset: -7px;
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: 165px 1fr 165px;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-botanical-left,
+.header-botanical-right {
+  position: relative;
+  height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-sprig {
+  position: absolute;
+  width: 112px;
+  height: auto;
+  opacity: 0.92;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 6px rgba(60, 35, 15, 0.15));
+}
+
+.sprig-left {
+  top: -10px;
+  left: -8px;
+  transform: rotate(-12deg);
+}
+
+.sprig-right {
+  top: -10px;
+  right: -8px;
+  transform: rotate(10deg);
+}
+
+.header-mascot {
+  position: relative;
+  z-index: 2;
+  height: 112px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(55, 32, 12, 0.25));
+  animation: gentleBreathe 4.2s ease-in-out infinite;
+}
+
+.mascot-right {
+  animation-delay: 1.6s;
+}
+
+@keyframes gentleBreathe {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(1.5deg); }
+}
+
+.header-centerpiece {
+  text-align: center;
+  padding: 0 10px;
+}
+
+.plaque-ribbon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.header-plaque-img {
+  height: 44px;
+  width: auto;
+  filter: drop-shadow(0 2px 5px rgba(60, 36, 15, 0.18));
+}
+
+.storybook-kicker {
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wc-crimson);
+  margin-bottom: 3px;
+}
+
+.storybook-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.1vw, 2.75rem);
+  font-weight: 800;
+  color: var(--ink-sepia);
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.storybook-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.06rem;
+  color: var(--ink-brown);
+  margin-top: 5px;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Vintage Postage-Stamp & Controls Bar */
+.postal-hud-bar {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-top: 12px;
+  margin-top: 4px;
+  border-top: 1px dashed rgba(120, 82, 45, 0.4);
+}
+
+.postal-stamps-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.stamp-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fdf9f0;
+  padding: 6px 14px 6px 8px;
+  border: 2px dotted #9c7a56;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(58, 36, 16, 0.1);
+  color: var(--ink-sepia);
+}
+
+.stamp-thumb {
+  width: 36px;
+  height: 42px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+}
+
+.stamp-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.stamp-label {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+
+.stamp-value {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ink-sepia);
+}
+
+.postmark-ring {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(158, 42, 43, 0.75);
+  border: 1.5px solid rgba(158, 42, 43, 0.55);
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-14deg);
+}
+
+/* Difficulty & Ambiance Controls */
+.hud-controls-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+}
+
+.tier-quill-toggle {
+  display: inline-flex;
+  background: #e9d7b9;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1.5px solid #8c6642;
+}
+
+.tier-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  padding: 6px 13px;
+  border-radius: 999px;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink-brown);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tier-btn.active {
+  background: linear-gradient(135deg, #8c2d38, #6b1d26);
+  color: #fff9ef;
+  box-shadow: 0 2px 7px rgba(107, 29, 38, 0.38);
+}
+
+.ambiance-btn,
+.wax-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1.5px solid #8c6642;
+  background: linear-gradient(180deg, #fdf8ee 0%, #ede0c8 100%);
+  color: var(--ink-sepia);
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(58, 36, 16, 0.12);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.ambiance-btn:hover,
+.wax-action-btn:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, #fffdf9 0%, #f4e8d1 100%);
+  box-shadow: 0 4px 10px rgba(58, 36, 16, 0.2);
+}
+
+/* ==========================================================================
+   MAIN CONTAINER & COMPANIONS FOLIO
+   ========================================================================== */
+.storybook-main {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  margin: 0 auto 54px;
+  padding: 0 18px;
+}
+
+.companions-folio {
+  background: linear-gradient(180deg, rgba(252, 246, 234, 0.95) 0%, rgba(242, 229, 205, 0.95) 100%);
+  border: 2px solid #96704b;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.folio-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.folio-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.folio-tiny-sprig {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+}
+
+.folio-heading {
+  font-family: var(--font-display);
+  font-size: 1.32rem;
+  font-weight: 700;
+  color: var(--ink-sepia);
+}
+
+.folio-subtext {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+
+/* Active Companion Whisper Scroll */
+.companion-whisper-banner {
+  flex: 1;
+  min-width: 320px;
+  max-width: 680px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fdf9f0;
+  border: 1.5px solid #b89872;
+  border-left: 5px solid var(--wc-rose);
+  border-radius: 12px;
+  padding: 8px 14px;
+  box-shadow: inset 0 0 14px rgba(184, 148, 102, 0.18);
+}
+
+.whisper-avatar {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 3px 5px rgba(55, 32, 12, 0.22));
+}
+
+.whisper-speaker {
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--wc-crimson);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.whisper-text {
+  font-family: var(--font-hand);
+  font-size: 1.18rem;
+  line-height: 1.25;
+  color: var(--ink-sepia);
+}
+
+/* 8 Watercolor Companion Medallions */
+.companions-medallion-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.character-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fbf6eb;
+  border: 1.5px solid #bfa07a;
+  border-radius: 12px;
+  padding: 7px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.character-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--wc-rose);
+  background: #fffdf8;
+  box-shadow: 0 6px 14px rgba(58, 36, 16, 0.14);
+}
+
+.character-card.active-companion {
+  background: linear-gradient(135deg, #fff9ee 0%, #f7e4e8 100%);
+  border: 2px solid var(--wc-crimson);
+  box-shadow: 0 5px 14px rgba(158, 42, 43, 0.22);
+}
+
+.char-portrait-wrap {
+  width: 50px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffdf9 40%, #ead6b8 100%);
+  border: 1.5px solid #9e7b56;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.char-portrait-img {
+  width: 48px;
+  height: 54px;
+  object-fit: contain;
+  transform: scale(1.08);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform 0.2s ease;
+}
+
+.character-card:hover .char-portrait-img {
+  transform: scale(1.18) rotate(-3deg);
+}
+
+.char-info {
+  min-width: 0;
+}
+
+.char-name {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink-sepia);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.char-role {
+  font-family: var(--font-serif);
+  font-size: 0.76rem;
+  font-style: italic;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   NAVIGATION RIBBON & DISCIPLINE INK PILLS
+   ========================================================================== */
+.navigation-ribbon-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(251, 244, 231, 0.92);
+  border: 1.5px solid #9e7b56;
+  border-radius: 14px;
+  padding: 10px 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 14px rgba(58, 36, 16, 0.08);
+}
+
+.realm-view-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.realm-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  border: 1.5px solid #9e7b56;
+  background: #f5e9d4;
+  color: var(--ink-brown);
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.realm-tab:hover {
+  background: #fff8eb;
+  transform: translateY(-1px);
+}
+
+.realm-tab.active {
+  background: linear-gradient(135deg, #5c3a1d, #3d240f);
+  color: #fff8eb;
+  border-color: #2e1a09;
+  box-shadow: 0 4px 10px rgba(46, 26, 9, 0.3);
+}
+
+.realm-tab-village {
+  border-color: var(--wc-sage);
+  background: var(--wc-sage-soft);
+  color: #23472b;
+}
+
+.realm-tab-village.active {
+  background: linear-gradient(135deg, #3b6e4c, #254a32);
+  color: #fffdf9;
+  border-color: #1c3b27;
+}
+
+.discipline-ink-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-caption {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  margin-right: 4px;
+}
+
+.ink-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #b5946e;
+  background: #fbf5e8;
+  color: var(--ink-brown);
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.ink-pill:hover {
+  background: #fffdf8;
+}
+
+.ink-pill.active {
+  background: var(--wc-crimson);
+  color: #fffdf9;
+  border-color: #70191a;
+}
+
+/* ==========================================================================
+   ARCHITECTURAL TWIN DOLLHOUSES STAGE
+   ========================================================================== */
+.dollhouses-stage {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+
+.dollhouses-stage.single-house-view {
+  grid-template-columns: minmax(0, 960px);
+  justify-content: center;
+}
+
+.manor-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.manor-pediment {
+  background: linear-gradient(180deg, #fcf6ea 0%, #efe0c6 100%);
+  border: 2px solid #8c6642;
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.pediment-ornament-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pediment-sticker {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.18));
+}
+
+.pediment-titles {
+  flex: 1;
+}
+
+.manor-roman-badge {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wc-crimson);
+}
+
+.manor-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--ink-sepia);
+  line-height: 1.15;
+}
+
+.manor-desc {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--ink-brown);
+  margin-top: 2px;
+}
+
+.manor-photo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  border: 1.5px solid #8c6642;
+  background: #fbf5e8;
+  color: var(--ink-sepia);
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.manor-photo-btn:hover {
+  background: #fffdf9;
+  transform: translateY(-1px);
+}
+
+/* Architectural Dollhouse Cutaway Frame */
+.dollhouse-cutaway-frame {
+  position: relative;
+  border-radius: 18px;
+  padding: 0 14px 16px;
+  box-shadow: 0 18px 44px rgba(48, 28, 11, 0.22);
+}
+
+.timber-architecture {
+  background:
+    repeating-linear-gradient(90deg, rgba(92, 58, 29, 0.06) 0px, rgba(92, 58, 29, 0.06) 2px, transparent 2px, transparent 18px),
+    linear-gradient(180deg, #b88752 0%, #966534 50%, #7d5024 100%);
+  border: 5px solid #5c3a1d;
+}
+
+.white-architecture {
+  background:
+    repeating-linear-gradient(90deg, rgba(110, 90, 68, 0.04) 0px, rgba(110, 90, 68, 0.04) 2px, transparent 2px, transparent 20px),
+    linear-gradient(180deg, #e8dfd1 0%, #d5c7b4 50%, #c2b29b 100%);
+  border: 5px solid #6e5a44;
+}
+
+/* Roof SVG & Climbing Rose Garlands */
+.architectural-roof {
+  position: relative;
+  height: 138px;
+  margin: -6px -14px 8px;
+  overflow: visible;
+}
+
+.roof-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 6px 10px rgba(35, 20, 8, 0.25));
+}
+
+.roof-garland {
+  position: absolute;
+  width: 96px;
+  height: auto;
+  pointer-events: none;
+  z-index: 3;
+  filter: drop-shadow(0 4px 6px rgba(35, 20, 8, 0.28));
+}
+
+.garland-h1-left { bottom: -12px; left: 8px; transform: rotate(-8deg); }
+.garland-h1-right { bottom: -10px; right: 12px; transform: rotate(10deg); }
+.garland-h2-left { bottom: -10px; left: 12px; transform: rotate(-6deg); }
+.garland-h2-right { bottom: -12px; right: 10px; transform: rotate(8deg); }
+
+.hanging-eave-lantern {
+  position: absolute;
+  bottom: -18px;
+  font-size: 1.35rem;
+  z-index: 4;
+  filter: drop-shadow(0 0 8px rgba(255, 205, 86, 0.85));
+  animation: lanternSwing 3.6s ease-in-out infinite;
+}
+
+.lantern-left { left: 22%; }
+.lantern-right { right: 22%; animation-delay: 1.8s; }
+
+@keyframes lanternSwing {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+/* Rising Watercolor Chimney Smoke */
+.chimney-smoke-plume {
+  position: absolute;
+  top: -14px;
+  width: 30px;
+  height: 40px;
+  pointer-events: none;
+}
+
+.smoke-puff {
+  position: absolute;
+  bottom: 0;
+  left: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 252, 245, 0.78) 0%, rgba(230, 220, 205, 0) 75%);
+  animation: smokeRise 4.2s ease-out infinite;
+}
+
+.smoke-puff.p2 { animation-delay: 1.4s; width: 18px; height: 18px; }
+.smoke-puff.p3 { animation-delay: 2.8s; width: 22px; height: 22px; }
+
+@keyframes smokeRise {
+  0% { transform: translateY(0) translateX(0) scale(0.6); opacity: 0.75; }
+  100% { transform: translateY(-42px) translateX(16px) scale(1.9); opacity: 0; }
+}
+
+/* 8 Rooms Cutaway Grid Inside Each Dollhouse */
+.dollhouse-floors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Individual Room Cutaway Card */
+.room-card {
+  background: var(--paper-cream);
+  border: 3px solid #4a2c11;
+  border-radius: 11px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.22s ease, border-color 0.2s ease;
+  position: relative;
+  box-shadow: inset 0 0 18px rgba(92, 58, 29, 0.14), 0 4px 12px rgba(28, 16, 6, 0.22);
+}
+
+.white-architecture .room-card {
+  border-color: #5c4938;
+}
+
+.room-card:hover {
+  transform: translateY(-4px) scale(1.012);
+  border-color: var(--wc-ochre);
+  box-shadow: 0 12px 26px rgba(42, 24, 9, 0.32), 0 0 22px rgba(255, 212, 112, 0.45);
+}
+
+.room-card.room-complete {
+  border-color: #c98a2c;
+}
+
+/* Architectural Top Beam of Each Room */
+.room-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  background: linear-gradient(90deg, #4a2c11 0%, #6b4222 50%, #4a2c11 100%);
+  color: #f9eedb;
+  font-family: var(--font-serif);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.white-architecture .room-top-bar {
+  background: linear-gradient(90deg, #524336 0%, #6e5b4b 50%, #524336 100%);
+}
+
+.room-complete-seal {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 243, 204, 0.2);
+  padding: 1px 7px;
+  border-radius: 999px;
+  color: #ffe28a;
+  font-size: 0.72rem;
+}
+
+/* Room Diorama Viewport */
+.room-art-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #f4e6cf;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(92, 58, 29, 0.35);
+}
+
+.room-art-stage svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.room-card:hover .room-art-stage svg {
+  transform: scale(1.04);
+}
+
+/* Warm Candlelight Overlay inside Room Viewport */
+.room-candle-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, rgba(255, 224, 140, 0.22) 0%, rgba(60, 35, 12, 0.14) 100%);
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.room-card:hover .room-candle-overlay {
+  background: radial-gradient(circle at 50% 45%, rgba(255, 232, 165, 0.38) 0%, rgba(60, 35, 12, 0.04) 100%);
+}
+
+/* Postage Stamp Mastery Overlay on Room Diorama */
+.room-postmark-stamp {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 30px;
+  height: 36px;
+  object-fit: contain;
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  pointer-events: none;
+}
+
+/* Room Caption & 4 Discipline Wax Seals */
+.room-card-body {
+  padding: 9px 11px 10px;
+  background: linear-gradient(180deg, #fdf8ee 0%, #f3e5cc 100%);
+  color: var(--ink-sepia);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.room-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.room-name {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--ink-sepia);
+  line-height: 1.2;
+}
+
+.room-subtitle {
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  color: var(--ink-brown);
+  line-height: 1.28;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.room-subject-pips {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 5px;
+}
+
+.subject-pip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 3px 4px;
+  border-radius: 6px;
+  background: #ece0ca;
+  border: 1px solid #bda27e;
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink-brown);
+  transition: all 0.15s ease;
+}
+
+.subject-pip.pip-junior {
+  background: #dfece2;
+  border-color: #4c7c59;
+  color: #1f472a;
+}
+
+.subject-pip.pip-scholar {
+  background: linear-gradient(135deg, #fbe8b2, #e8c266);
+  border-color: #9e6b18;
+  color: #3d2408;
+}
+
+.subject-pip.pip-highlighted {
+  outline: 2px solid var(--wc-crimson);
+  transform: scale(1.05);
+}
+
+/* Garden Foundation Plinth at Bottom of Each Dollhouse */
+.manor-garden-base {
+  position: relative;
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: linear-gradient(180deg, #687854 0%, #4a5939 100%);
+  border: 2px solid #344026;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+}
+
+.cobblestone-plinth {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f7efe0;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.base-prop {
+  position: absolute;
+  bottom: 2px;
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  pointer-events: none;
+}
+
+.prop-fence-left { left: 8px; height: 52px; }
+.prop-toadstools { left: 74px; height: 42px; }
+.prop-bucket-right { right: 12px; height: 50px; }
+.prop-signpost-left { left: 10px; height: 62px; }
+.prop-watering-right { right: 12px; height: 52px; }
+
+/* ==========================================================================
+   POSTBOX LANE & WHISPERING TEAPOT VILLAGE SECTION
+   ========================================================================== */
+.village-promenade-section {
+  margin-bottom: 30px;
+}
+
+.village-banner-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: linear-gradient(135deg, #fdf8ee 0%, #f3e2c6 50%, #e8d5dc 100%);
+  border: 2px solid #8c6642;
+  border-radius: 18px;
+  padding: 18px 26px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+.village-banner-pixie {
+  width: 105px;
+  height: 118px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(58, 36, 16, 0.25));
+  animation: gentleBreathe 4.5s ease-in-out infinite;
+}
+
+.village-banner-copy {
+  text-align: center;
+  max-width: 760px;
+}
+
+.village-title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--ink-sepia);
+  margin-bottom: 6px;
+}
+
+.village-lead {
+  font-family: var(--font-serif);
+  font-size: 1.04rem;
+  color: var(--ink-brown);
+  line-height: 1.45;
+}
+
+.village-cottages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.village-cottage-card {
+  background: var(--paper-cream);
+  border: 2px solid #96704b;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.village-cottage-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 34px rgba(48, 28, 11, 0.22);
+}
+
+.cottage-painting-wrap {
+  position: relative;
+  height: 240px;
+  background: radial-gradient(circle, #fffdf9 40%, #efe0c6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-bottom: 1.5px solid #bfa07a;
+  overflow: hidden;
+}
+
+.cottage-painting-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  filter: drop-shadow(0 6px 14px rgba(45, 25, 10, 0.2));
+  transition: transform 0.35s ease;
+}
+
+.village-cottage-card:hover .cottage-painting-img {
+  transform: scale(1.05);
+}
+
+.cottage-keeper-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #fffdf9;
+  border: 2px solid #8c6642;
+  padding: 3px;
+  object-fit: contain;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.cottage-card-body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.cottage-lane-tag {
+  font-family: var(--font-serif);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--wc-crimson);
+}
+
+.cottage-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--ink-sepia);
+}
+
+.cottage-lore {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  color: var(--ink-brown);
+  line-height: 1.4;
+}
+
+.cottage-jump-btn {
+  margin-top: auto;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #7d522b;
+  background: linear-gradient(180deg, #fbf3e3 0%, #e8d2b0 100%);
+  color: var(--ink-sepia);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cottage-jump-btn:hover {
+  background: linear-gradient(135deg, #7d522b, #5c3a1d);
+  color: #fffdf9;
+}
+
+/* ==========================================================================
+   WUNDERKAMMER CURIO CABINET & STAMP ALBUM
+   ========================================================================== */
+.wunderkammer-section {
+  background: linear-gradient(180deg, #fbf4e4 0%, #eddac0 100%);
+  border: 2px solid #8c6642;
+  border-radius: 18px;
+  padding: 18px 22px 22px;
+  box-shadow: var(--shadow-soft);
+}
+
+.wunderkammer-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.wunderkammer-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wunderkammer-key-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.reset-ledger-btn {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1.5px solid #a67c52;
+  background: #fbf5e8;
+  color: var(--ink-muted);
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reset-ledger-btn:hover {
+  border-color: var(--wc-crimson);
+  color: var(--wc-crimson);
+}
+
+.relics-cabinet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 10px;
+}
+
+.relic-slot {
+  background: #fdf9f0;
+  border: 1.5px dashed #b89872;
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.58;
+  filter: grayscale(0.75);
+  transition: all 0.2s ease;
+}
+
+.relic-slot.unlocked {
+  opacity: 1;
+  filter: none;
+  border: 2px solid #b8863b;
+  background: linear-gradient(135deg, #fffdf9 0%, #faeccd 100%);
+  box-shadow: 0 4px 12px rgba(140, 96, 32, 0.18);
+  cursor: pointer;
+}
+
+.relic-slot.unlocked:hover {
+  transform: translateY(-2px);
+}
+
+.relic-thumb-img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.relic-name {
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--ink-sepia);
+  line-height: 1.15;
+}
+
+.relic-room {
+  font-family: var(--font-serif);
+  font-size: 0.73rem;
+  color: var(--ink-muted);
+}
+
+/* ==========================================================================
+   OPEN 2-PAGE ILLUSTRATED WATERCOLOR FIELD JOURNAL MODAL
+   ========================================================================== */
+.storybook-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 16, 8, 0.76);
+  backdrop-filter: blur(5px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow-y: auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.open-storybook-spread {
+  position: relative;
+  width: min(1240px, 98vw);
+  max-height: 92vh;
+  background:
+    linear-gradient(90deg, #f3e4ca 0%, #fdf8ee 46%, #dfc8a4 49.5%, #b59268 50%, #dfc8a4 50.5%, #fdf8ee 54%, #f3e4ca 100%);
+  border: 4px solid #5c3a1d;
+  border-radius: 20px;
+  box-shadow: var(--shadow-book);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  color: var(--ink-sepia);
+}
+
+.book-spine-crease {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 24px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, rgba(74, 44, 17, 0) 0%, rgba(74, 44, 17, 0.22) 50%, rgba(74, 44, 17, 0) 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.spread-ribbon-bookmark {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 58px;
+  height: auto;
+  z-index: 10;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.spread-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 12;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1.5px solid #7d522b;
+  background: #fbf3e3;
+  color: var(--ink-sepia);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.spread-close-btn:hover {
+  background: var(--wc-crimson);
+  color: #fff;
+  border-color: var(--wc-crimson);
+}
+
+.storybook-page {
+  padding: 22px 26px;
+  overflow-y: auto;
+  max-height: 91vh;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.page-left {
+  border-right: 1px solid rgba(120, 82, 45, 0.3);
+}
+
+.page-running-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dashed #bfa07a;
+  padding-bottom: 6px;
+  padding-right: 95px;
+}
+
+.page-left .page-running-header {
+  padding-right: 0;
+}
+
+.room-plate-badge {
+  font-family: var(--font-serif);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--wc-crimson);
+}
+
+.page-folio-num {
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
+.journal-room-title {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--ink-sepia);
+  line-height: 1.15;
+}
+
+.journal-room-subtitle {
+  font-family: var(--font-serif);
+  font-size: 0.94rem;
+  color: var(--ink-brown);
+}
+
+/* 3-Way Visual Mode Switcher & Magnifying Loupe Toolbar */
+.visual-mode-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.visual-mode-pills {
+  display: inline-flex;
+  background: #ead9be;
+  padding: 3px;
+  border-radius: 10px;
+  border: 1px solid #a6825b;
+}
+
+.vmode-btn {
+  border: none;
+  background: transparent;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink-brown);
+  cursor: pointer;
+}
+
+.vmode-btn.active {
+  background: #5c3a1d;
+  color: #fff8eb;
+}
+
+.loupe-toggle-btn {
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1.5px solid #8c6642;
+  background: #fdf8ee;
+  color: var(--ink-sepia);
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.loupe-toggle-btn.active {
+  background: #f5e0a6;
+  border-color: #9e6b18;
+}
+
+/* Specimen Visual Frame & Interactive Magnifying Loupe */
+.specimen-frame {
+  position: relative;
+  width: 100%;
+  height: 315px;
+  background: #231911;
+  border: 3px solid #6e4720;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.45);
+}
+
+.specimen-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.3s ease;
+}
+
+.specimen-svg-stage {
+  width: 100%;
+  height: 100%;
+  background: #f5e7cf;
+}
+
+.specimen-svg-stage svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Da Vinci Architectural Blueprint Mode Filter */
+.specimen-frame.blueprint-mode .specimen-photo,
+.specimen-frame.blueprint-mode .specimen-svg-stage {
+  filter: sepia(0.85) hue-rotate(168deg) saturate(1.85) contrast(1.18);
+}
+
+.specimen-frame.blueprint-mode::after {
+  content: "ARCHITECTURAL MEASURED DRAWING · SCALE 1:12 · 75,29 CM";
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  background: rgba(16, 42, 68, 0.82);
+  color: #d9f0ff;
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem;
+  padding: 3px 8px;
+  border: 1px solid rgba(180, 225, 255, 0.5);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Brass Magnifying Loupe Lens */
+.magnifying-loupe {
+  position: absolute;
+  width: 138px;
+  height: 138px;
+  border-radius: 50%;
+  border: 4px solid #d4af37;
+  box-shadow: 0 0 0 2px #5c3a1d, 0 10px 25px rgba(0, 0, 0, 0.55), inset 0 0 14px rgba(255, 240, 190, 0.4);
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 8;
+  transform: translate(-50%, -50%);
+}
+
+/* Clue Hotspots */
+.hotspot-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hotspot-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  background: rgba(253, 248, 236, 0.94);
+  color: var(--ink-sepia);
+  border: 2px solid var(--wc-crimson);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-family: var(--font-serif);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.hotspot-pin:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: var(--wc-crimson);
+  color: #fff;
+}
+
+.field-observation-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: #fbf3e1;
+  border: 1.5px solid #c4a47c;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  color: var(--ink-sepia);
+}
+
+.left-page-footer-card {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #f5e8d0;
+  border: 1.5px solid #bfa07a;
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+.resident-mini-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.resident-mini-img {
+  width: 48px;
+  height: 52px;
+  object-fit: contain;
+}
+
+/* RIGHT PAGE: SCHOLARLY QUEST FOLIOS */
+.active-tier-pill {
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #ead9be;
+  padding: 3px 10px;
+  border-radius: 999px;
+  color: var(--ink-sepia);
+}
+
+.discipline-folio-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+
+.dfolio-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 6px;
+  border-radius: 10px;
+  border: 1.5px solid #b5946e;
+  background: #f5e8d0;
+  color: var(--ink-brown);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.dfolio-tab.active {
+  background: linear-gradient(135deg, #5c3a1d, #3d240f);
+  color: #fff8eb;
+  border-color: #2e1a09;
+  box-shadow: 0 4px 10px rgba(46, 26, 9, 0.25);
+}
+
+.dtab-status {
+  font-size: 0.72rem;
+  color: var(--wc-ochre);
+}
+
+.quest-manuscript-body {
+  background: #fdf9f0;
+  border: 2px solid #bfa07a;
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  flex: 1;
+  box-shadow: inset 0 0 24px rgba(184, 148, 102, 0.14);
+}
+
+.quest-header-badges {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.quest-subject-ribbon,
+.quest-tier-ribbon {
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #efe1c8;
+  color: var(--ink-brown);
+}
+
+.quest-manuscript-title {
+  font-family: var(--font-display);
+  font-size: 1.28rem;
+  font-weight: 800;
+  color: var(--ink-sepia);
+}
+
+.quest-story-scroll {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-brown);
+  background: #f6ebd6;
+  border-left: 4px solid #b58956;
+  padding: 8px 12px;
+  border-radius: 0 8px 8px 0;
+}
+
+.quest-question-parchment {
+  padding: 4px 0;
+}
+
+.quest-prompt-text {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--ink-sepia);
+  line-height: 1.45;
+}
+
+.quest-options-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-btn {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  text-align: left;
+  padding: 10px 13px;
+  border-radius: 10px;
+  border: 1.5px solid #bfa07a;
+  background: #fffdf9;
+  color: var(--ink-sepia);
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.option-btn:hover:not(:disabled) {
+  border-color: var(--wc-crimson);
+  background: #fdf3f4;
+  transform: translateX(3px);
+}
+
+.option-letter {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ece0ca;
+  border: 1.5px solid #8c6642;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.84rem;
+  flex-shrink: 0;
+}
+
+.option-btn.correct {
+  background: #e3f3e6;
+  border-color: #2f855a;
+  color: #1a4731;
+}
+
+.option-btn.correct .option-letter {
+  background: #2f855a;
+  color: #fff;
+  border-color: #22543d;
+}
+
+.option-btn.wrong {
+  background: #fde8e8;
+  border-color: #c53030;
+  color: #742a2a;
+}
+
+.wax-seal-hint-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1.5px dashed #9e6b18;
+  background: #fbf0d4;
+  color: #5c3a1d;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hint-parchment-box {
+  margin-top: 8px;
+  padding: 9px 12px;
+  background: #fff8e6;
+  border: 1px solid #d69e2e;
+  border-radius: 9px;
+  font-family: var(--font-hand);
+  font-size: 1.12rem;
+  color: var(--ink-sepia);
+}
+
+.feedback-parchment-banner {
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-family: var(--font-serif);
+  font-size: 0.94rem;
+  line-height: 1.4;
+}
+
+.feedback-parchment-banner.success {
+  background: #dfece2;
+  border: 1.5px solid #38a169;
+  color: #1c4532;
+}
+
+.feedback-parchment-banner.try-again {
+  background: #fbe4e6;
+  border: 1.5px solid #e53e3e;
+  color: #742a2a;
+}
+
+/* Atlas Modal Sheet */
+.atlas-folio-sheet {
+  position: relative;
+  width: min(1120px, 96vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--paper-cream);
+  border: 4px solid #5c3a1d;
+  border-radius: 18px;
+  padding: 26px;
+  color: var(--ink-sepia);
+  box-shadow: var(--shadow-book);
+}
+
+.atlas-plates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.atlas-plate-card {
+  background: #fdf9f0;
+  border: 2px solid #96704b;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.atlas-plate-card img {
+  width: 100%;
+  height: 310px;
+  object-fit: cover;
+  display: block;
+}
+
+.atlas-plate-card figcaption {
+  padding: 10px 14px;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--ink-brown);
+}
+
+/* Celebration Floating Watercolor Petals & Golden Leaves */
+.confetti-piece {
+  position: fixed;
+  top: -20px;
+  z-index: 200;
+  pointer-events: none;
+  animation: petalFall linear forwards;
+}
+
+.confetti-petal {
+  width: 14px;
+  height: 10px;
+  background: radial-gradient(circle at 30% 30%, #ffd6e0, #d46a82);
+  border-radius: 75% 25% 75% 25%;
+  box-shadow: 0 2px 4px rgba(120, 40, 60, 0.25);
+}
+
+.confetti-leaf {
+  width: 13px;
+  height: 9px;
+  background: radial-gradient(circle at 30% 30%, #ffe89e, #c98a2c);
+  border-radius: 20% 80% 20% 80%;
+  box-shadow: 0 2px 4px rgba(100, 65, 15, 0.25);
+}
+
+.ink-dot-indicator {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd04d 0%, #c98a2c 100%);
+  border: 1px solid #5c3a1d;
+  display: inline-block;
+}
+
+.wax-seal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #d94b52, #8c1d22);
+  border: 1px solid #4a1014;
+  display: inline-block;
+}
+
+.pin-number {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--wc-crimson);
+  margin-right: 3px;
+}
+
+.pip-svg,
+.dtab-svg-icon {
+  flex-shrink: 0;
+}
+
+@keyframes petalFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(380deg); opacity: 0; }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1120px) {
+  .storybook-header {
+    grid-template-columns: 1fr;
+  }
+  .header-botanical-left,
+  .header-botanical-right {
+    display: none;
+  }
+  .dollhouses-stage {
+    grid-template-columns: 1fr;
+  }
+  .open-storybook-spread {
+    grid-template-columns: 1fr;
+  }
+  .book-spine-crease {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .dollhouse-floors-grid {
+    grid-template-columns: 1fr;
+  }
+  .discipline-folio-tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .atlas-plates-grid {
+    grid-template-columns: 1fr;
+  }
+}

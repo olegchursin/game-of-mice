@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Whispering Mouse Houses — An Illustrated Watercolor Storybook &amp; Quest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400&amp;family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="ambiance-day">
+  <!-- Global SVG Filters & Reusable Hand-Inked Sepia Symbols -->
+  <svg width="0" height="0" style="position:absolute; pointer-events:none;" aria-hidden="true">
+    <defs>
+      <filter id="wc-paper-grain" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" />
+        <feDiffuseLighting in="noise" lighting-color="#fff8eb" surfaceScale="1.4" result="light">
+          <feDistantLight azimuth="45" elevation="62" />
+        </feDiffuseLighting>
+        <feBlend in="SourceGraphic" in2="light" mode="multiply" />
+      </filter>
+
+      <!-- Hand-Inked Wrought-Iron Lantern Symbol -->
+      <symbol id="ink-lantern" viewBox="0 0 28 38">
+        <line x1="14" y1="0" x2="14" y2="7" stroke="#3d240f" stroke-width="1.8"/>
+        <path d="M8,7 L20,7 L17,4 L11,4 Z" fill="#4a2c11"/>
+        <polygon points="7,7 21,7 19,27 9,27" fill="#fff3c4" stroke="#3d240f" stroke-width="1.8"/>
+        <circle cx="14" cy="17" r="4.5" fill="#f5a623"/>
+        <path d="M14,12 Q17,17 14,21 Q11,17 14,12 Z" fill="#fffdf0"/>
+        <line x1="7" y1="17" x2="21" y2="17" stroke="#3d240f" stroke-width="1.1"/>
+        <path d="M9,27 L19,27 L16,31 L12,31 Z" fill="#4a2c11"/>
+      </symbol>
+
+      <!-- Sepia Ink Discipline Emblems -->
+      <symbol id="ink-math" viewBox="0 0 20 20">
+        <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M10,4 L6,15 M10,4 L14,15 M7.5,11.5 L12.5,11.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      </symbol>
+      <symbol id="ink-logic" viewBox="0 0 20 20">
+        <circle cx="7.5" cy="10" r="4.2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M11.7,10 L17,10 M14.5,10 L14.5,13 M16.5,10 L16.5,13.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="ink-words" viewBox="0 0 20 20">
+        <path d="M4,16 C7,12 11,7 16,3 C15,8 12,12 8,14 L4,16 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="3" y1="17" x2="9" y2="11" stroke="currentColor" stroke-width="1.4"/>
+      </symbol>
+      <symbol id="ink-history" viewBox="0 0 20 20">
+        <path d="M3,6 L10,2.5 L17,6 Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <line x1="5.5" y1="6.5" x2="5.5" y2="15" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="10" y1="6.5" x2="10" y2="15" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="14.5" y1="6.5" x2="14.5" y2="15" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="3" y1="15.5" x2="17" y2="15.5" stroke="currentColor" stroke-width="1.6"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Atmospheric Floating Watercolor Petals, Pollen & Fireflies Layer -->
+  <div class="sky-canvas" id="skyCanvas" aria-hidden="true"></div>
+
+  <!-- Top Heirloom Storybook Header -->
+  <header class="storybook-header">
+    <div class="header-botanical-left" aria-hidden="true">
+      <img src="assets/watercolor/garden_31.png" alt="" class="header-sprig sprig-left" />
+      <img src="assets/watercolor/s1_09.png" alt="" class="header-mascot mascot-left" title="Barnaby the Lantern-Bearer" />
+    </div>
+
+    <div class="header-centerpiece">
+      <div class="plaque-ribbon-wrap">
+        <img src="assets/watercolor/post_33.png" alt="The Pixies Postbox" class="header-plaque-img" />
+      </div>
+      <div class="storybook-kicker">Brambly Hedge &amp; Maileg Miniature Chronicles · Anno MMXXVI</div>
+      <h1 class="storybook-title">The Whispering Mouse Houses</h1>
+      <p class="storybook-subtitle">
+        <em>An Illustrated Watercolor &amp; Pen-and-Ink Exploration of Sixteen Real Dollhouse Rooms, Sixty-Four Scholarly Mysteries &amp; Postbox Lane</em>
+      </p>
+    </div>
+
+    <div class="header-botanical-right" aria-hidden="true">
+      <img src="assets/watercolor/mouse_cartographer.png" alt="" class="header-mascot mascot-right" title="Pippin the Cartographer" />
+      <img src="assets/watercolor/garden_29.png" alt="" class="header-sprig sprig-right" />
+    </div>
+
+    <!-- Vintage Postage Stamp, Wax Seal & Ambiance Ledger Bar -->
+    <div class="postal-hud-bar">
+      <div class="postal-stamps-group">
+        <div class="stamp-card" title="Total Scholarly Stars Earned (Max 192)">
+          <img src="assets/watercolor/post_01.png" alt="" class="stamp-thumb" />
+          <div class="stamp-meta">
+            <span class="stamp-label">Royal Post Merit</span>
+            <strong class="stamp-value" id="starScore">0 / 192</strong>
+          </div>
+          <span class="postmark-ring" aria-hidden="true">10¢</span>
+        </div>
+
+        <div class="stamp-card" title="Disciplines Solved Across All 16 Rooms (Max 64)">
+          <img src="assets/watercolor/post_03.png" alt="" class="stamp-thumb" />
+          <div class="stamp-meta">
+            <span class="stamp-label">Folios Sealed</span>
+            <strong class="stamp-value" id="questProgress">0 / 64</strong>
+          </div>
+          <span class="postmark-ring" aria-hidden="true">25¢</span>
+        </div>
+
+        <div class="stamp-card" title="Rooms Fully Mastered &amp; Postmarked">
+          <img src="assets/watercolor/post_27.png" alt="" class="stamp-thumb" />
+          <div class="stamp-meta">
+            <span class="stamp-label">Rooms Unlocked</span>
+            <strong class="stamp-value" id="roomProgress">0 / 16</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Difficulty & Lighting Ambiance Controls -->
+      <div class="hud-controls-group">
+        <div class="tier-quill-toggle" role="group" aria-label="Scholarly Difficulty Tier">
+          <button class="tier-btn active" data-tier="junior" id="tierJuniorBtn" title="Ages 6–10: Intuitive Storytelling Puzzles">
+            <span class="tier-roman">I.</span>
+            <span>Junior Explorer</span>
+          </button>
+          <button class="tier-btn" data-tier="scholar" id="tierScholarBtn" title="Ages 11–Adult: Deep Historical, Etymological &amp; Mathematical Challenges">
+            <span class="tier-roman">II.</span>
+            <span>Master Scholar</span>
+          </button>
+        </div>
+
+        <button class="ambiance-btn" id="ambianceToggleBtn" title="Switch between Sunlit Watercolor Wash and Candlelit Lantern Evening">
+          <span class="ink-dot-indicator" id="ambianceIcon"></span>
+          <span id="ambianceLabel">Candlelight Mode</span>
+        </button>
+
+        <button class="wax-action-btn" id="openAtlasBtn" title="Inspect the Original Full Dollhouse Photographs">
+          <span>Archival Photo Atlas</span>
+        </button>
+
+        <button class="wax-action-btn" id="soundToggleBtn" title="Toggle Chime &amp; Music Box Audio">
+          <span id="soundIcon">Chimes: On</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="storybook-main">
+    <!-- Guild of Watercolor Mouse & Woodland Companions -->
+    <section class="companions-folio" aria-label="The Woodland &amp; Mouse Companions">
+      <div class="folio-header-row">
+        <div class="folio-title-group">
+          <img src="assets/watercolor/post_15.png" alt="" class="folio-tiny-sprig" />
+          <div>
+            <h2 class="folio-heading">The Guild of Mouse &amp; Woodland Companions</h2>
+            <p class="folio-subtext">Choose a painted companion to guide your lantern through the rooms and whisper margin notes</p>
+          </div>
+        </div>
+        <div class="companion-whisper-banner" id="companionWhisperBanner">
+          <img src="assets/watercolor/mouse_cartographer.png" alt="Active Companion" class="whisper-avatar" id="whisperAvatar" />
+          <div class="whisper-content">
+            <div class="whisper-speaker" id="whisperSpeaker">Pippin Mapmaker · Attic Cartographer</div>
+            <p class="whisper-text" id="whisperText">"Every penciled number and miniature teacup in these twin houses hides a true story. Click any room window below to open its illustrated field journal!"</p>
+          </div>
+        </div>
+      </div>
+      <div class="companions-medallion-row" id="charactersRow"></div>
+    </section>
+
+    <!-- View Switcher & Discipline Filter Ribbon -->
+    <section class="navigation-ribbon-bar" aria-label="Realm View &amp; Discipline Filters">
+      <div class="realm-view-tabs" role="tablist">
+        <button class="realm-tab active" data-house="all">
+          Both Twin Manors
+        </button>
+        <button class="realm-tab" data-house="1">
+          Manor I: Timber &amp; Havana Gables
+        </button>
+        <button class="realm-tab" data-house="2">
+          Manor II: White Rose Manor
+        </button>
+        <button class="realm-tab realm-tab-village" data-house="village">
+          Postbox Lane &amp; Teapot Village
+        </button>
+      </div>
+
+      <div class="discipline-ink-pills" role="group" aria-label="Highlight Discipline">
+        <span class="filter-caption">Ink Focus:</span>
+        <button class="ink-pill active" data-subject="all">All Disciplines</button>
+        <button class="ink-pill" data-subject="math">Mathematics</button>
+        <button class="ink-pill" data-subject="logic">Logic</button>
+        <button class="ink-pill" data-subject="linguistics">Word Craft</button>
+        <button class="ink-pill" data-subject="history">History</button>
+      </div>
+    </section>
+
+    <!-- THE ARCHITECTURAL TWIN DOLLHOUSES STAGE -->
+    <section class="dollhouses-stage" id="housesStage">
+      <!-- HOUSE 1: THE SLANTED-ROOF TIMBER & HAVANA GABLES -->
+      <article class="manor-column manor-timber" id="house1Container">
+        <div class="manor-pediment">
+          <div class="pediment-ornament-row">
+            <img src="assets/watercolor/garden_13.png" alt="" class="pediment-sticker" />
+            <div class="pediment-titles">
+              <span class="manor-roman-badge">MANOR I · EST. 75,29</span>
+              <h2 class="manor-name">The Timber-Frame Havana &amp; Rose Gables</h2>
+              <p class="manor-desc">Hand-hewn plywood rafters, twin <em>Havana Cigars</em> cedar beds, the penciled <code>75,29</code> attic &amp; the <em>A. R. Dean &amp; Sons</em> laundry</p>
+            </div>
+            <button class="manor-photo-btn" data-inspect="1">
+              Full Plate
+            </button>
+          </div>
+        </div>
+
+        <div class="dollhouse-cutaway-frame timber-architecture">
+          <!-- Illustrated Watercolor Roof & Chimney Assembly for House 1 -->
+          <div class="architectural-roof roof-house1" aria-hidden="true">
+            <svg viewBox="0 0 800 155" class="roof-svg" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="h1-shingles" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#6b4226"/>
+                  <stop offset="50%" stop-color="#8c5834"/>
+                  <stop offset="100%" stop-color="#59351c"/>
+                </linearGradient>
+                <linearGradient id="h1-gable-wood" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#f3dfc1"/>
+                  <stop offset="100%" stop-color="#d4b083"/>
+                </linearGradient>
+              </defs>
+              <!-- Brick Chimney on Left with Rising Watercolor Smoke -->
+              <rect x="92" y="18" width="44" height="85" fill="#9c4132" stroke="#4a1f18" stroke-width="2.5"/>
+              <rect x="86" y="12" width="56" height="10" rx="2" fill="#7d3024" stroke="#4a1f18" stroke-width="2"/>
+              <line x1="92" y1="34" x2="136" y2="34" stroke="#5e241b" stroke-width="1.5"/>
+              <line x1="92" y1="50" x2="136" y2="50" stroke="#5e241b" stroke-width="1.5"/>
+              <!-- Asymmetric Slanted Timber Gable matching IMG_3710 left house -->
+              <polygon points="18,150 285,12 782,150" fill="url(#h1-gable-wood)" stroke="#4a2c11" stroke-width="4"/>
+              <polygon points="8,152 285,4 792,152 775,152 285,20 25,152" fill="url(#h1-shingles)" stroke="#3b200d" stroke-width="2.5"/>
+              <!-- Timber Framing Beams & Round Attic Vent Window -->
+              <line x1="285" y1="20" x2="285" y2="150" stroke="#6e4720" stroke-width="6"/>
+              <line x1="165" y1="82" x2="435" y2="82" stroke="#6e4720" stroke-width="5"/>
+              <circle cx="285" cy="54" r="18" fill="#2c3e50" stroke="#5c3a1d" stroke-width="3.5"/>
+              <circle cx="285" cy="54" r="15" fill="#fef3c7" class="window-amber-glow" opacity="0.85"/>
+              <line x1="267" y1="54" x2="303" y2="54" stroke="#5c3a1d" stroke-width="2"/>
+              <line x1="285" y1="36" x2="285" y2="72" stroke="#5c3a1d" stroke-width="2"/>
+              <!-- Penciled Carpenter Mark on Eave -->
+              <text x="645" y="136" font-family="Caveat, cursive" font-size="20" font-weight="bold" fill="#4a2c11" transform="rotate(14 645 136)">75,29 cm</text>
+            </svg>
+            <!-- Climbing Watercolor Botanical Garlands & Hand-Inked Hanging Lanterns -->
+            <div class="chimney-smoke-plume" style="left: 14%;">
+              <span class="smoke-puff p1"></span>
+              <span class="smoke-puff p2"></span>
+              <span class="smoke-puff p3"></span>
+            </div>
+            <img src="assets/watercolor/garden_31.png" alt="" class="roof-garland garland-h1-left" />
+            <img src="assets/watercolor/garden_29.png" alt="" class="roof-garland garland-h1-right" />
+            <svg class="hanging-eave-lantern lantern-left" width="26" height="36"><use href="#ink-lantern"/></svg>
+            <svg class="hanging-eave-lantern lantern-right" width="26" height="36"><use href="#ink-lantern"/></svg>
+          </div>
+
+          <!-- 8 Rooms Grid of House 1 -->
+          <div class="dollhouse-floors-grid" id="house1Grid"></div>
+
+          <!-- Illustrated Garden Foundation & Cellar Steps for House 1 -->
+          <div class="manor-garden-base" aria-hidden="true">
+            <img src="assets/watercolor/garden_04.png" alt="" class="base-prop prop-fence-left" />
+            <img src="assets/watercolor/post_24.png" alt="" class="base-prop prop-toadstools" />
+            <div class="cobblestone-plinth">
+              <span>Old Root Cellar Steps &amp; Lavender Hedge</span>
+            </div>
+            <img src="assets/watercolor/garden_02.png" alt="" class="base-prop prop-bucket-right" />
+          </div>
+        </div>
+      </article>
+
+      <!-- HOUSE 2: THE WHITE ROSE-GABLE MANOR & ROADSTER COURTYARD -->
+      <article class="manor-column manor-white" id="house2Container">
+        <div class="manor-pediment">
+          <div class="pediment-ornament-row">
+            <img src="assets/watercolor/garden_29.png" alt="" class="pediment-sticker" />
+            <div class="pediment-titles">
+              <span class="manor-roman-badge">MANOR II · SUB ROSA</span>
+              <h2 class="manor-name">The White Rose-Gable Manor &amp; Courtyard</h2>
+              <p class="manor-desc">Vaulted gourmet kitchen, Crimson Rose hearth, Silver Keychain wardrobe, Whispered Scroll study &amp; Burgundy Roadster</p>
+            </div>
+            <button class="manor-photo-btn" data-inspect="2">
+              Full Plate
+            </button>
+          </div>
+        </div>
+
+        <div class="dollhouse-cutaway-frame white-architecture">
+          <!-- Illustrated Watercolor Roof & Rose Pediment for House 2 -->
+          <div class="architectural-roof roof-house2" aria-hidden="true">
+            <svg viewBox="0 0 800 155" class="roof-svg" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="h2-slate" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#4a5568"/>
+                  <stop offset="100%" stop-color="#2d3748"/>
+                </linearGradient>
+                <linearGradient id="h2-gable-wall" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="100%" stop-color="#ede6da"/>
+                </linearGradient>
+              </defs>
+              <!-- Stone Chimney on Right -->
+              <rect x="645" y="16" width="46" height="88" fill="#8c7a6b" stroke="#3d312a" stroke-width="2.5"/>
+              <rect x="639" y="10" width="58" height="10" rx="2" fill="#6e5d4f" stroke="#3d312a" stroke-width="2"/>
+              <!-- Symmetric Whitewashed Gable Roof matching IMG_3718/3719 -->
+              <polygon points="18,150 400,12 782,150" fill="url(#h2-gable-wall)" stroke="#5c4938" stroke-width="4"/>
+              <polygon points="6,152 400,3 794,152 776,152 400,19 24,152" fill="url(#h2-slate)" stroke="#232931" stroke-width="2.5"/>
+              <!-- Scalloped Gingerbread Bargeboard Trim & Tudor Rose Medallion -->
+              <path d="M80,132 Q120,145 160,132 Q200,145 240,132 Q280,145 320,132 Q360,145 400,132 Q440,145 480,132 Q520,145 560,132 Q600,145 640,132 Q680,145 720,132" fill="none" stroke="#b89b72" stroke-width="2.5"/>
+              <circle cx="400" cy="68" r="24" fill="#b8252b" stroke="#4a1014" stroke-width="2.5"/>
+              <circle cx="400" cy="68" r="15" fill="#e53e3e" stroke="#741b1b" stroke-width="1.5"/>
+              <circle cx="400" cy="68" r="6" fill="#fefcbf"/>
+            </svg>
+            <div class="chimney-smoke-plume" style="left: 82%;">
+              <span class="smoke-puff p1"></span>
+              <span class="smoke-puff p2"></span>
+              <span class="smoke-puff p3"></span>
+            </div>
+            <img src="assets/watercolor/garden_29.png" alt="" class="roof-garland garland-h2-left" />
+            <img src="assets/watercolor/garden_31.png" alt="" class="roof-garland garland-h2-right" />
+            <svg class="hanging-eave-lantern lantern-left" width="26" height="36"><use href="#ink-lantern"/></svg>
+            <svg class="hanging-eave-lantern lantern-right" width="26" height="36"><use href="#ink-lantern"/></svg>
+          </div>
+
+          <!-- 8 Rooms Grid of House 2 -->
+          <div class="dollhouse-floors-grid" id="house2Grid"></div>
+
+          <!-- Illustrated Courtyard Promenade & Roadster Plinth for House 2 -->
+          <div class="manor-garden-base" aria-hidden="true">
+            <img src="assets/watercolor/post_28.png" alt="" class="base-prop prop-signpost-left" />
+            <div class="cobblestone-plinth">
+              <span>Burgundy Roadster Courtyard &amp; Daisy Flagstones</span>
+            </div>
+            <img src="assets/watercolor/garden_19.png" alt="" class="base-prop prop-watering-right" />
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- POSTBOX LANE & WHISPERING TEAPOT VILLAGE VIEW -->
+    <section class="village-promenade-section hidden" id="villageSection" aria-label="Postbox Lane &amp; Whispering Mouse Village">
+      <div class="village-banner-card">
+        <img src="assets/watercolor/post_06.png" alt="Postal Pixie" class="village-banner-pixie" />
+        <div class="village-banner-copy">
+          <div class="storybook-kicker">Beyond the Dollhouse Garden Gate</div>
+          <h2 class="village-title">Postbox Lane &amp; The Whispering Teapot Village</h2>
+          <p class="village-lead">
+            Stroll down the cobblestone lane where our mouse and woodland companions tend their watercolor teapots, bookshops, antique curiosities, and botanical glasshouses. Select any cottage to visit its guild master and enter their room.
+          </p>
+        </div>
+        <img src="assets/watercolor/post_22.png" alt="Ribbon Pixie" class="village-banner-pixie" />
+      </div>
+
+      <div class="village-cottages-grid" id="villageGrid"></div>
+    </section>
+
+    <!-- WUNDERKAMMER RELIC CABINET & ROYAL MOUSE STAMP ALBUM -->
+    <section class="wunderkammer-section" aria-label="Collected Relics &amp; Royal Post Stamp Album">
+      <div class="wunderkammer-header">
+        <div class="wunderkammer-title-wrap">
+          <img src="assets/watercolor/post_27.png" alt="" class="wunderkammer-key-icon" />
+          <div>
+            <h2 class="folio-heading">The Wunderkammer Curio Cabinet &amp; Postal Stamp Album</h2>
+            <p class="folio-subtext">Solve at least one scholarly puzzle in each of the 16 rooms to unlock its miniature heirloom relic and cancellation postmark</p>
+          </div>
+        </div>
+        <button class="reset-ledger-btn" id="resetProgressBtn">Reset Field Journal</button>
+      </div>
+      <div class="relics-cabinet-grid" id="relicsGrid"></div>
+    </section>
+  </main>
+
+  <!-- OPEN 2-PAGE WATERCOLOR FIELD JOURNAL & ROOM QUEST MODAL -->
+  <div class="storybook-modal-backdrop hidden" id="roomModal" role="dialog" aria-modal="true" aria-labelledby="modalRoomTitle">
+    <div class="open-storybook-spread">
+      <!-- Silk Ribbon Bookmark & Close Button -->
+      <img src="assets/watercolor/post_35.png" alt="" class="spread-ribbon-bookmark" aria-hidden="true" />
+      <button class="spread-close-btn" id="closeRoomModal" aria-label="Close Field Journal">Close Journal</button>
+
+      <!-- Center Book Spine Binding -->
+      <div class="book-spine-crease" aria-hidden="true"></div>
+
+      <!-- LEFT PAGE: PHOTOGRAPH, WATERCOLOR DIORAMA & DA VINCI BLUEPRINT INSPECTOR -->
+      <div class="storybook-page page-left">
+        <div class="page-running-header">
+          <span class="room-plate-badge" id="modalHouseBadge">Plate I · Attic Loft</span>
+          <span class="page-folio-num">Folio Verso · Visual Evidence</span>
+        </div>
+
+        <h2 class="journal-room-title" id="modalRoomTitle">Room Name</h2>
+        <p class="journal-room-subtitle" id="modalRoomSubtitle">Room subtitle details</p>
+
+        <!-- 3-Way Visual Mode Switcher + Magnifying Loupe Toggle -->
+        <div class="visual-mode-toolbar">
+          <div class="visual-mode-pills">
+            <button class="vmode-btn active" id="viewPhotoBtn" data-vmode="photo">Archival Photograph</button>
+            <button class="vmode-btn" id="viewSvgBtn" data-vmode="watercolor">Watercolor Cutaway</button>
+            <button class="vmode-btn" id="viewBlueprintBtn" data-vmode="blueprint">Da Vinci Blueprint</button>
+          </div>
+          <button class="loupe-toggle-btn active" id="toggleLoupeBtn" title="Hover over the photograph to inspect miniature details with a 2.2x magnifying glass">
+            Brass Loupe: On
+          </button>
+        </div>
+
+        <!-- Framed Visual Stage with Interactive Magnifying Glass & Clue Pins -->
+        <div class="specimen-frame" id="photoFrame">
+          <img id="modalRoomPhoto" src="" alt="Real Dollhouse Room Photograph" class="specimen-photo" />
+          <div id="modalRoomSvg" class="specimen-svg-stage hidden"></div>
+          <!-- Magnifying Glass Loupe Lens -->
+          <div class="magnifying-loupe hidden" id="photoLoupe" aria-hidden="true"></div>
+          <!-- Interactive Clue Hotspots -->
+          <div class="hotspot-layer" id="hotspotLayer"></div>
+        </div>
+
+        <!-- Clue Callout Box -->
+        <div class="field-observation-note" id="hotspotCallout">
+          <span id="hotspotCalloutText"><strong>Field Note:</strong> Move your brass magnifying loupe across the photograph or select the numbered wax pins to inspect real miniature clues.</span>
+        </div>
+
+        <!-- Resident Companion & Relic Strip at Bottom of Left Page -->
+        <div class="left-page-footer-card" id="modalResidentCard"></div>
+      </div>
+
+      <!-- RIGHT PAGE: THE FOUR SCHOLARLY QUEST FOLIOS -->
+      <div class="storybook-page page-right">
+        <div class="page-running-header">
+          <span class="page-folio-num">Folio Recto · The Four Disciplines</span>
+          <span class="active-tier-pill" id="modalTierIndicator">Tier I · Junior Explorer</span>
+        </div>
+
+        <!-- 4 Discipline Tabs (Math, Logic, Word Craft, History) -->
+        <div class="discipline-folio-tabs" id="subjectTabs" role="tablist">
+          <button class="dfolio-tab active" data-subject="math">
+            <svg class="dtab-svg-icon" width="18" height="18"><use href="#ink-math"/></svg>
+            <span class="dtab-name">Mathematics</span>
+            <span class="dtab-status" id="status-math">Unsealed</span>
+          </button>
+          <button class="dfolio-tab" data-subject="logic">
+            <svg class="dtab-svg-icon" width="18" height="18"><use href="#ink-logic"/></svg>
+            <span class="dtab-name">Logic</span>
+            <span class="dtab-status" id="status-logic">Unsealed</span>
+          </button>
+          <button class="dfolio-tab" data-subject="linguistics">
+            <svg class="dtab-svg-icon" width="18" height="18"><use href="#ink-words"/></svg>
+            <span class="dtab-name">Word Craft</span>
+            <span class="dtab-status" id="status-linguistics">Unsealed</span>
+          </button>
+          <button class="dfolio-tab" data-subject="history">
+            <svg class="dtab-svg-icon" width="18" height="18"><use href="#ink-history"/></svg>
+            <span class="dtab-name">History</span>
+            <span class="dtab-status" id="status-history">Unsealed</span>
+          </button>
+        </div>
+
+        <!-- Active Quest Manuscript Card -->
+        <div class="quest-manuscript-body" id="questCard">
+          <div class="quest-header-badges">
+            <span class="quest-subject-ribbon" id="questSubjectTag">Mathematics</span>
+            <span class="quest-tier-ribbon" id="questDifficultyTag">Tier I · Junior Explorer</span>
+          </div>
+
+          <h3 class="quest-manuscript-title" id="questTitle">Quest Title</h3>
+          <blockquote class="quest-story-scroll" id="questStory">Story context...</blockquote>
+
+          <div class="quest-question-parchment">
+            <p class="quest-prompt-text" id="questPrompt">Question prompt?</p>
+          </div>
+
+          <div class="quest-options-stack" id="questOptions"></div>
+
+          <!-- Companion Hint Wax Seal & Feedback Scroll -->
+          <div class="quest-actions-footer">
+            <button class="wax-seal-hint-btn" id="hintBtn">
+              <span class="wax-seal-dot"></span>
+              <span>Unseal Companion Hint</span>
+            </button>
+            <div class="hint-parchment-box hidden" id="hintBox"></div>
+          </div>
+
+          <div class="feedback-parchment-banner hidden" id="feedbackBanner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURAL PHOTOGRAPH ATLAS MODAL -->
+  <div class="storybook-modal-backdrop hidden" id="atlasModal" role="dialog" aria-modal="true" aria-labelledby="atlasModalTitle">
+    <div class="atlas-folio-sheet">
+      <button class="spread-close-btn" id="closeAtlasModal" aria-label="Close Atlas">Close Atlas</button>
+      <div class="storybook-kicker">Primary Archival Plates · IMG_3710 – IMG_3725</div>
+      <h2 class="journal-room-title" id="atlasModalTitle">Photographic Atlas of the Twin Dollhouses</h2>
+      <p class="journal-room-subtitle">Every room, puzzle, and miniature artifact in our watercolor world is faithfully drawn from these real dollhouse photographs.</p>
+
+      <div class="atlas-plates-grid">
+        <figure class="atlas-plate-card">
+          <img src="assets/photos/IMG_3710.jpg" alt="Both Dollhouses Together" />
+          <figcaption><strong>Plate I — The Twin Houses Side-by-Side:</strong> The natural timber-frame Havana Gables (left) and the White Rose-Gable Manor with the Burgundy Roadster parked out front (right).</figcaption>
+        </figure>
+        <figure class="atlas-plate-card">
+          <img src="assets/photos/IMG_3711.jpg" alt="House 1 Full View" />
+          <figcaption><strong>Plate II — House I (Timber-Frame Gables):</strong> Featuring the Attic Train Loft, Havana Cigars beds, penciled <code>75,29</code> beam, woven bassinet, cardboard laundry &amp; root cellar.</figcaption>
+        </figure>
+        <figure class="atlas-plate-card">
+          <img src="assets/photos/IMG_3718.jpg" alt="House 2 Upper Floors" />
+          <figcaption><strong>Plate III — House II Upper Floors:</strong> The Parmigiano &amp; Pink-Fridge Kitchen, Crimson Rose Parlor, Sprinkled Donut &amp; Geode Bath, and Silver Keychain Wardrobe.</figcaption>
+        </figure>
+        <figure class="atlas-plate-card">
+          <img src="assets/photos/IMG_3724.jpg" alt="House 2 Lower Floors and Roadster" />
+          <figcaption><strong>Plate IV — House II Lower Floors &amp; Courtyard:</strong> The Pink Iron Bed, Handwritten Wall Scroll &amp; Unicorn Study, Sailor's Bunk &amp; Silver Moon, and the Vintage Burgundy Roadster.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <script src="quests-house1.js"></script>
+  <script src="quests-house2.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

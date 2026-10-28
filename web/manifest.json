@@ -1,0 +1,9 @@
+{
+  "name": "Chronicles of the Twin Mouse Houses",
+  "short_name": "Mouse Houses",
+  "description": "Explore 16 real mouse dollhouse rooms and solve Math, Logic, Linguistics, and History quests!",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fdf8ef",
+  "theme_color": "#fdf8ef"
+}
